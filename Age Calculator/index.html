@@ -1,0 +1,55 @@
+<html>
+    <head>
+        <title>Age Calculator</title>
+        <link rel="stylesheet" href="style.css">
+    </head>
+    <body>
+        <div class="container">
+            <h2>AGE CALCULATOR</h2>
+            <input type="datetime-local" id="dob">
+            <button id="submit">Calculate Age</button>
+            <p id="year"></p>
+            <p id="month"></p>
+            <p id="week"></p>
+            <p id="day"></p>
+            <p id="hour"></p>
+            <p id="min"></p>
+            <p id="sec"></p>
+        </div>
+        <!--javascript start-->
+        <script>
+          document.querySelector("#submit").addEventListener("click",function()
+          {
+            const update = function(){
+                let dob = document.querySelector("#dob").value,
+                day = new Date(dob),
+                time = day.getTime(),
+                today = new Date(),
+                timenow = today.getTime(),
+                value = timenow-time,
+                sec = Math.floor(value/1000),
+                min = Math.floor(value/(1000*60)),
+                hour = Math.floor(value/(1000*60*60)),
+                days = Math.floor(value/(1000*60*60*24)),
+                week = Math.floor(value/(1000*60*60*24*7)),
+                month = Math.floor(value/(1000*60*60*24*30.4375)),
+                year = Math.floor(value/(1000*60*60*24*365.25));
+                
+                let insert = function(x,y)
+                {
+                    document.querySelector(x).innerHTML = y;
+
+                }
+                insert("#year",year + "-year");
+                insert("#month",month + "-Month");
+                insert("#week",week + "-Week");
+                insert("#day",days + "-Days");
+                insert("#hour",hour + "-Hour");
+                insert("#min",min + "-Min");
+                insert("#sec",sec + "-Sec");
+               }
+               setInterval(update,1000);
+          })
+        </script>
+    </body>
+</html>
